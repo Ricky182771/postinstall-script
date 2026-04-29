@@ -7,6 +7,9 @@ sudo sh -c 'echo "max_parallel_downloads=20" >> /etc/dnf/dnf5.conf'
 # 2. Actualizar sistema
 sudo dnf upgrade --refresh -y
 
+# Desinstalar Akonadi
+sudo dnf remove akonadi* -y
+
 # 3. Repos RPM Fusion
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
@@ -43,8 +46,12 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 sudo dnf install code -y
 
 # 12. Utilidades y Multimedia
-sudo dnf install unrar p7zip p7zip-plugins unzip btop fastfetch vlc kvantum -y
+sudo dnf install unrar p7zip p7zip-plugins unzip btop fastfetch vlc kvantum timeshift -y
 sudo flatpak install -y flathub com.github.tchx84.Flatseal com.spotify.Client
+
+# Fuentes de Microsoft
+sudo dnf install curl cabextract xorg-x11-font-utils fontconfig -y
+sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 
 # 13. Software de Juegos
 echo ""
